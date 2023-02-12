@@ -9,6 +9,10 @@
   --dark-header: #4f99f6;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   font-family: "Roboto Slab", serif;
   padding: 0;  
@@ -31,13 +35,24 @@ body {
   display: none;
 }
 
-.main {
-  /* top: 20rem; */
-  /* border-top: 9rem; */
-  /* position: relative; */
+.main{
+  display: flex;
+  flex-flow: row wrap; 
+  flex: 1;
+  /*font-weight: bold; */
+  /* text-align: justify; */
+  border: 0;
 }
 
 .header {
+  display: block;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  border: 0;
+  padding-top: 0.25rem;
+}
+/* .header {
   display: flex;
   align-items: flex;
   justify-content: center;
@@ -45,25 +60,27 @@ body {
   position: fixed;
   padding-left: 1rem;  
   margin: 0;
+  border: 0;
   width: 100%;
-}
+} */
 
 .navigation {
-  /* max-width: 800px; */
-  width: 100%;
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
-  padding: 0;  
-  margin: 0;
+  flex-flow: column wrap;
 }
 
 .navigation ul {
-  width: 60%;
-  display: flex;
-  justify-content: space-evenly;
   list-style: none;
-  flex-direction: row wrap;
+  padding: 0;
+  margin: 0;
+}
+
+.footer {
+  background-color:	var(--lighter-grey);
+  padding: 1.5rem;
+  margin: 0;  
+  padding: 0.25rem;
+  display: flex;
+  justify-content: center;
 }
 
 .navigation a {
@@ -73,7 +90,7 @@ body {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   text-decoration: none;
   display: block;
-  /* padding: 1em; */
+  padding: 1em;
   color: white;
 }
 .navigation li:last-of-type a {
@@ -123,6 +140,10 @@ p {
   .navigation {
     background-color: var(--dark-header);
   }
+
+  .header {
+    background-color: var(--dark-header);
+  }
 }
 
 @media screen and (min-width: 700px) {
@@ -134,16 +155,42 @@ p {
     font-size: 1rem;
   }
 
-  .preamble {
-    display: flex;
+
+  .main > * {
+    padding-top: 5rem;
+    /* flex: 1 100%; */
   }
 
   .navigation {
+    width: 100%;
     display: flex;
-    flex-flow: row wrap;
-    justify-content: space-evenly;
-    border-top: 0;
+    align-items: center;
+    flex-grow: 1;
+    padding: 0;  
+    margin: 0;
   }
+
+  .navigation ul {
+    width: 60%;
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+    flex-direction: row wrap;
+    font-size: 1.75rem;
+  }
+
+  .header {
+    text-align: left;
+    display: flex;
+    align-items: flex-end;
+    justify-content: left;
+    overflow-wrap: break-word;
+    position: fixed; 
+    margin: 0;
+    border: 0;
+    padding-left: 1rem;
+    width: 100%;
+  } 
 
   .navigation a {
     border: 0;

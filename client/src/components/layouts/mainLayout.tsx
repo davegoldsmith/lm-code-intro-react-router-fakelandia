@@ -1,6 +1,7 @@
 // import Footer from "../footer/footer";
 import Header from "../header/header";
 import { Outlet } from "react-router-dom";
+import Footer from "../footer/footer";
 
 const MainLayout: React.FC = () => (
   <>
@@ -8,7 +9,7 @@ const MainLayout: React.FC = () => (
     <main className="main">
       <Outlet />
     </main>
-    {/* <Footer /> */}
+    <Footer />
   </>
 );
 
