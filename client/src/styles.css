@@ -1,0 +1,169 @@
+:root {
+  --coral: #f05d5e;
+  --teal: #0f7173;
+  --light: #e7ecef;
+  --dark: #272932;
+  --camel: #d8a47f;
+  --lighter-grey: #292a2d;
+  --dark-bg: #202124;
+  --dark-header: #4f99f6;
+}
+
+body {
+  font-family: "Roboto Slab", serif;
+  padding: 0;  
+  margin: 0;
+}
+
+.card-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.card {
+  flex: 1 0 25%;
+  padding: 10px;
+  margin: 10px;
+}
+
+/* mobile first! - hide preamble*/
+.preamble {
+  display: none;
+}
+
+.main {
+  /* top: 20rem; */
+  /* border-top: 9rem; */
+  /* position: relative; */
+}
+
+.header {
+  display: flex;
+  align-items: flex;
+  justify-content: center;
+  overflow-wrap: break-word;
+  position: fixed;
+  padding-left: 1rem;  
+  margin: 0;
+  width: 100%;
+}
+
+.navigation {
+  /* max-width: 800px; */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  padding: 0;  
+  margin: 0;
+}
+
+.navigation ul {
+  width: 60%;
+  display: flex;
+  justify-content: space-evenly;
+  list-style: none;
+  flex-direction: row wrap;
+}
+
+.navigation a {
+  text-align: center;
+  padding: 1rem;
+  border-top: 1px solid lightslategray;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  display: block;
+  /* padding: 1em; */
+  color: white;
+}
+.navigation li:last-of-type a {
+  border-bottom: 1px solid lightslategray;
+}
+
+.navigation a:hover {
+  background: #1565c0;
+}
+
+img {
+  width: 250px;
+}
+
+h1 {
+  font-size: 2.25rem;
+}
+
+p {
+  font-size: 0.75rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--dark-bg);
+    color: var(--light);
+  }
+  .card {
+    background-color: var(--lighter-grey);
+  }
+  .navigation {
+    background-color: var(--lighter-grey);
+  }
+  .header {
+    background-color: var(--lighter-grey);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: var(--light);
+    color: var(--dark);
+  }
+  .card {
+    background-color: lightslategray;
+  }
+  .navigation {
+    background-color: var(--dark-header);
+  }
+}
+
+@media screen and (min-width: 700px) {
+  h1 {
+    font-size: 2.75rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .preamble {
+    display: flex;
+  }
+
+  .navigation {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    border-top: 0;
+  }
+
+  .navigation a {
+    border: 0;
+  }
+
+  .navigation li:last-of-type a {
+    border: 0;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  h1 {
+    font-size: 3rem;
+  }
+
+  p {
+    font-size: 1.25rem;
+  }
+
+  .navigation {
+    justify-content: center;
+  }
+}
