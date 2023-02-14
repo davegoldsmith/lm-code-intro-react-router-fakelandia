@@ -1,11 +1,16 @@
-import { Misdemeanour } from "../../types/misdemeanours.types"
+import { useEffect, useState } from "react";
+import { Misdemeanour, MisdemeanourKindDisplayMap } from "../../types/misdemeanours.types"
 const MisdemeanorComp : React.FC<Misdemeanour> = (props: Misdemeanour) => {
+  
+  const displayMisdemonour = MisdemeanourKindDisplayMap.get(props.misdemeanour);
+
   return (
-    <div className="misdemeanour">
-      <p className="misdemeanour__cell">{props.citizenId}</p>
-      <p>{props.date}</p>
-      <p>{props.misdemeanour}</p>
-    </div>
+    <tr className="misdemeanour">
+      <td className="misdemeanour__cell">{props.citizenId}</td>
+      <td className="misdemeanour__cell">{props.date}</td>
+      <td className="misdemeanour__cell">{displayMisdemonour}</td>
+      <td><img src={props.punishImage} /></td>
+    </tr>
   )
 }
 

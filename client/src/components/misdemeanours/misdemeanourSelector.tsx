@@ -1,10 +1,11 @@
 import {
   MisdemeanourKind,
+  MisdemeanourKindDisplayMap,
   MISDEMEANOURS,
 } from "../../types/misdemeanours.types";
 
 interface MisdemeanourSelectorProps {
-  setMisdemeanourKind : (
+  setMisdemeanourKind: (
     setDeameanourChoice: MisdemeanourKind | undefined
   ) => void;
   misdemeanourKind: MisdemeanourKind | undefined;
@@ -33,10 +34,11 @@ const MisdemeanourSelector: React.FC<MisdemeanourSelectorProps> = ({
         }}
       >
         <option value="none">All</option>
-        <option value={MISDEMEANOURS[0]}>{MISDEMEANOURS[0]}</option>
-        <option value={MISDEMEANOURS[1]}>{MISDEMEANOURS[1]}</option>
-        <option value={MISDEMEANOURS[2]}>{MISDEMEANOURS[2]}</option>
-        <option value={MISDEMEANOURS[3]}>{MISDEMEANOURS[3]}</option>
+        {MISDEMEANOURS.map((mis, index) => (
+          <option key={index} value={mis}>
+            {MisdemeanourKindDisplayMap.get(mis)}
+          </option>
+        ))}
       </select>
     </div>
   );
