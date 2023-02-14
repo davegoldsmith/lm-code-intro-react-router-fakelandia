@@ -15,6 +15,10 @@ function App() {
       "http://localhost:8080/api/misdemeanours/5"
     );
     const json = (await apiResponse.json()) as {misdemeanours: Misdemeanour[]};
+    json.misdemeanours.map((mis, index)  => {
+      mis.punishImage =`https://picsum.photos/300/200?t=${new Date().getTime()}${index}`;      
+    });
+
     setMisdemeanours(json.misdemeanours);
   };
 
