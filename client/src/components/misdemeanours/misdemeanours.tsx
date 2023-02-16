@@ -24,6 +24,7 @@ const Misdemeanours: React.FC = () => {
         setMisdemeanourKind={(
           setMisdemeanourChoice: MisdemeanourKind | undefined
         ) => setMisdemeanourKind(setMisdemeanourChoice)}
+        labelForNoSelection={"All"}
       />
       <div className="misdemeanours">
         <table>
