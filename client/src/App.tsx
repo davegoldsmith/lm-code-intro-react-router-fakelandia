@@ -6,24 +6,25 @@ import Router from "./components/router/router";
 import { Misdemeanour } from "./types/misdemeanours.types";
 import { useEffect, useState } from "react";
 import MisdemeanoursProvider from "./components/context/misdemeanoursProvider";
+import { getMisdemeanours } from "./helper/apiCalls";
 
 function App() {
   const [misdemeanours, setMisdemeanours] = useState<Array<Misdemeanour>>([]);
 
-  const getMisdemeanours = async () => {
-    const apiResponse = await fetch(
-      "http://localhost:8080/api/misdemeanours/5"
-    );
-    const json = (await apiResponse.json()) as {misdemeanours: Misdemeanour[]};
-    json.misdemeanours.map((mis, index)  => {
-      mis.punishImage =`https://picsum.photos/300/200?t=${new Date().getTime()}${index}`;      
-    });
+  // const getMisdemeanours = async () => {
+  //   const apiResponse = await fetch(
+  //     "http://localhost:8080/api/misdemeanours/5"
+  //   );
+  //   const json = (await apiResponse.json()) as {misdemeanours: Misdemeanour[]};
+  //   json.misdemeanours.map((mis, index)  => {
+  //     mis.punishImage =`https://picsum.photos/300/200?t=${new Date().getTime()}${index}`;      
+  //   });
 
-    setMisdemeanours(json.misdemeanours);
-  };
+  //   setMisdemeanours(json.misdemeanours);
+  // };
 
   useEffect(() => {
-    getMisdemeanours();
+    getMisdemeanours(setMisdemeanours);
   }, []);
 
   return (
