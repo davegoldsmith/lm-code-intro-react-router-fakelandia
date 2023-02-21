@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import LoginForm from "../login/LoginForm";
 import Confessions from "../confessions/Confessions";
-import Home from "../home/home";
-import MainLayout from "../layouts/mainLayout";
-import Misdemeanours from "../misdemeanours/misdemeanours";
-import NotFound from "../not_found/notFound";
+import Home from "../home/Home";
+import MainLayout from "../layouts/MainLayout";
+import Misdemeanours from "../misdemeanours/Misdemeanours";
+import NotFound from "../not_found/NotFound";
 
 const Router: React.FC = () => {
   return (

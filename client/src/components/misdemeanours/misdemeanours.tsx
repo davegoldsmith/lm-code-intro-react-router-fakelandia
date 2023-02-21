@@ -1,11 +1,11 @@
-import { MisdemeanoursContext } from "../context/misdemeanoursProvider";
+import { MisdemeanoursContext } from "../context/MisdemeanoursProvider";
 import React, { useContext, useState } from "react";
 import {
   Misdemeanour,
   MisdemeanourKind,
 } from "../../types/misdemeanours.types";
-import MisdemeanorComp from "./misdemeanour";
-import MisdemeanourSelector from "./misdemeanourSelector";
+import MisdemeanorComp from "./Misdemeanour";
+import MisdemeanourSelector from "./MisdemeanourSelector";
 
 const Misdemeanours: React.FC = () => {
   const [misdemeanourKind, setMisdemeanourKind] = useState<

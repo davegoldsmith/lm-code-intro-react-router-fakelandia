@@ -2,10 +2,10 @@
 import "./styles.css";
 
 import { BrowserRouter } from "react-router-dom";
-import Router from "./components/router/router";
+import Router from "./components/router/Router";
 import { Misdemeanour } from "./types/misdemeanours.types";
 import { useEffect, useState } from "react";
-import MisdemeanoursProvider from "./components/context/misdemeanoursProvider";
+import MisdemeanoursProvider from "./components/context/MisdemeanoursProvider";
 import { getMisdemeanours } from "./helper/apiCalls";
 import LoginForm from "./components/login/LoginForm";
 import UserProvider from "./components/context/UserProvider";

@@ -1,4 +1,4 @@
-import MainLayout from "../components/layouts/mainLayout";
+import MainLayout from "../components/layouts/MainLayout";
 
 export const MISDEMEANOURS = [
   "rudeness",

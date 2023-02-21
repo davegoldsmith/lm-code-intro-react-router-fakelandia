@@ -6,11 +6,11 @@ import {
   validateSubject,
 } from "../../helper/validation";
 import { JustTalk, Misdemeanour, MisdemeanourKind } from "../../types/misdemeanours.types";
-import MisdemeanourSelector from "../misdemeanours/misdemeanourSelector";
+import MisdemeanourSelector from "../misdemeanours/MisdemeanourSelector";
 import SubmitConfession from "./SubmitConfession";
 import ConfessionDetails from "./ConfessionDetail";
 import SubjectInput from "./ConfessionSubject";
-import { UpdateMisdemeanoursContext, MisdemeanoursContext } from "../context/misdemeanoursProvider";
+import { UpdateMisdemeanoursContext, MisdemeanoursContext } from "../context/MisdemeanoursProvider";
 import { UserContext } from "../context/UserProvider";
 import { Citizen } from "../../types/general.types";
 import { getTodaysDate, showConfessionConfirmationBar } from "../../helper/helper";

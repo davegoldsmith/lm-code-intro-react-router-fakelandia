@@ -1,7 +1,7 @@
 // import Footer from "../footer/footer";
-import Header from "../header/header";
+import Header from "../header/Header";
 import { Outlet } from "react-router-dom";
-import Footer from "../footer/footer";
+import Footer from "../footer/Footer";
 
 const MainLayout: React.FC = () => (
   <>

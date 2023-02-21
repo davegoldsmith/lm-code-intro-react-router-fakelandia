@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Citizen } from "../../types/general.types";
 import { UserContext } from "../context/UserProvider";
-import Nav from "./nav";
+import Nav from "./Nav";
 
 const Header = () => {
   const user = useContext(UserContext) as Citizen;
