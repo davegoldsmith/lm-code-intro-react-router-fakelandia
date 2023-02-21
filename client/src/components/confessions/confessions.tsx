@@ -13,7 +13,7 @@ import SubjectInput from "./ConfessionSubject";
 import { UpdateMisdemeanoursContext, MisdemeanoursContext } from "../context/misdemeanoursProvider";
 import { UserContext } from "../context/UserProvider";
 import { Citizen } from "../../types/general.types";
-import { getTodaysDate } from "../../helper/helper";
+import { getTodaysDate, showConfessionConfirmationBar } from "../../helper/helper";
 
 const Confessions: React.FC = () => {
   const currentUser = useContext(UserContext) as Citizen;
@@ -28,8 +28,9 @@ const Confessions: React.FC = () => {
       const newMisdemeanour : Misdemeanour = {citizenId: currentUser.citizenID, misdemeanour: confessionKind, date: getTodaysDate(), punishImage: getPunishmentImage(999)};
       updateMisdeamours([...misdemeanours, newMisdemeanour]);
       setDisplayMessage("Thanks for the confession, it has been added to our list of demeanours, punishment will be forthcoming!");
+      
     }
-    
+    showConfessionConfirmationBar();
   }
 
   const handleSubmit = async (e: FormEvent) => {
@@ -46,7 +47,8 @@ const Confessions: React.FC = () => {
         setDoSubmitValidation(false);
       }
     } catch (e) {
-      console.log(e);
+      setDisplayMessage("❌ Error trying to save your confession. Please try again later.");
+      showConfessionConfirmationBar();
     }
 
   };
@@ -98,7 +100,7 @@ const Confessions: React.FC = () => {
           setConfessionDetails={setConfessionDetails}
         />
         <SubmitConfession />
-        {displayMessage && <p>{displayMessage}</p>}
+        <div id="confession-message">{displayMessage}</div>
       </form>
     </div>
   );
