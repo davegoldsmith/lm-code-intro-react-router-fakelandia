@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 :root {
   --coral: #f05d5e;
@@ -10,7 +10,6 @@
   --dark-bg: #202124;
   --dark-header: #4f99f6;
   --title: #d7bf04;
-  
 }
 
 * {
@@ -18,25 +17,20 @@
 }
 
 .root {
-  display: flex; 
-  flex-direction: column; 
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
 }
 
-
-html {
-  height: 100%;
-}
-
 body {
-  font-family: 'Ubuntu', sans-serif;
-  padding: 0;  
+  font-family: "Ubuntu", sans-serif;
+  padding: 0;
   margin: 0;
 }
 
-.main{
+.main {
   display: flex;
-  flex-flow: column wrap ;
+  flex-flow: column wrap;
   justify-content: flex-start;
   text-align: justify;
   border: 0;
@@ -52,8 +46,7 @@ body {
 }
 
 .header-title,
-.login-title
-{
+.login-title {
   color: var(--title);
 }
 
@@ -68,9 +61,9 @@ body {
 }
 
 .footer {
-  background-color:	var(--lighter-grey);
+  background-color: var(--lighter-grey);
   padding: 1.5rem;
-  margin: 0;  
+  margin: 0;
   padding: 0.25rem;
   display: flex;
   justify-content: center;
@@ -78,12 +71,11 @@ body {
 
 .navigation a {
   text-align: center;
-  padding: 1rem;
+  padding: 1em;
   border-top: 1px solid lightslategray;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   text-decoration: none;
   display: block;
-  padding: 1em;
   color: white;
 }
 
@@ -91,9 +83,15 @@ body {
   border-bottom: 1px solid lightslategray;
 }
 
-.navigation a:hover {
-  background: #1565c0;
-} 
+.navigation a:hover
+ {
+  background-color: #1565c0 !important;
+}
+
+.navigation a.active {
+  background-color: #1565c0;
+  text-decoration: none;
+}
 
 .user-heading {
   display: flex;
@@ -111,12 +109,11 @@ body {
   color: #1565c0;
 }
 
-
 .misdemeanours {
   padding-top: 0.5rem;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
 }
 
 table {
@@ -130,7 +127,7 @@ th,
 td {
   border-right: 1px solid #ffffff;
   text-align: center;
-  padding: 0.5rem 5rem;
+  padding: 0.5rem 3rem;
   font-size: 1.25rem;
 }
 
@@ -143,37 +140,21 @@ td {
   /* background-color: rgb(205, 235, 253); */
 }
 
-table th:last-of-type, td:last-of-type {
+table th:last-of-type,
+td:last-of-type {
   border: none;
-}
-
-.confessionForm {
-  display: flex;
-  flex-direction: column;
-  justify-content: right;
-  /* width: 900px;
-  align-self: center; */
-}
-
-.confession-subject {
-  padding: 0.5rem 10rem;
-  display: flex;
-  justify-content: right;
-  flex-direction: row; 
-  font-size: 1.25rem;
-  line-height: 1rem;
 }
 
 .error-confess,
 .error-login {
-  color:red;
+  color: red;
   font-size: 0.75rem;
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
 }
 
 .error-confess {
-  justify-content: right;  
+  justify-content: right;
   padding-right: 10rem;
 }
 
@@ -187,51 +168,45 @@ table th:last-of-type, td:last-of-type {
   border-radius: 0.25rem;
 }
 
-.confession-subject__input {
-  width: 40%;
-  padding: 0.2rem;
+.confessionForm {
+  display: flex;
+  flex-direction: column;
 }
 
-.confession-subject__label {
+.confession-subject {
+  /* padding: 0.5rem 10rem; */
+  display: flex;
+  flex-direction: column; 
+  font-size: 1rem;
+  line-height: 1rem;
+}
 
-  padding: 0.2rem 2rem;
-
+.confession-subject__input,
+.confession-subject__label
+ {
+  padding: 0.2rem; 
 }
 
 .confession-subject__label::before,
 .confession__selector-label::before {
-  content:'* ';
+  content: "* ";
   color: red;
 }
 
 .confession-detail {
-  padding: 0.5rem 10rem;
+  padding: 0.5rem 0rem;
   display: flex;
-  flex-direction: column; 
-  font-size: 1.25rem;   
+  flex-direction: column;   
 }
 
 .confession-detail__input { 
   display: flex;
   resize: vertical;
-  font-size: 1.1rem; 
-  max-width: 100%;
+  /* font-size: 1.1rem;  */
+  max-width: 100%; 
   height: 15rem;
 }
 
-.confession-submit {
-  padding: 1rem 10rem;
-  display: flex;
-  flex-direction: row; 
-  justify-content: left ;
-    
-}
-
-.confession-submit__button {
-  padding: 0.5rem 1rem;
-  font-size: 1.25rem;
-  font-family: 'Ubuntu', sans-serif;
-}
 
 .misdemeanour {
   /* display: flex;
@@ -240,37 +215,33 @@ table th:last-of-type, td:last-of-type {
 }
 
 .misdemeanour__cell {
-
 }
 
 .misdemeanour__selector,
 .confession__selector {
   display: flex;
-  justify-content: center;
-  font-size: 1.25rem;
+  /* justify-content: center; */
+  font-size: 1rem;
 }
 
 .misdemeanour__selector {
-  padding-top: 2rem;
-  justify-content: center;
+  /* padding-top: 2rem;
+  justify-content: center; */
 }
 
 .confession__selector {
-  padding: 0.5rem 10rem;
-  justify-content: right;
+  display: flex;
+  justify-content: left ;
+  flex-direction: column; 
+  font-size: 1rem;
+  line-height: 1rem;
 }
 
 .misdemeanour__selector-label,
-.confession__selector-label {
-  padding: 0.2rem 2rem;
-}
-
+.confession__selector-label,
 .misdemeanour__selector-select {
-  width: 40%;
-  padding: 0.2rem;
+  padding: 0.2rem; 
 }
-
-
 
 .form-container {
   /* font-family: sans-serif; */
@@ -281,10 +252,9 @@ table th:last-of-type, td:last-of-type {
   gap: 20px;
   height: 100vh;
   /* font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif; */
-  background-color: var(--lighter-grey) ;
+  background-color: var(--lighter-grey);
   /* background-color: #f8f9fd; */
 }
-
 
 input[type="text"],
 input[type="password"] {
@@ -296,7 +266,7 @@ input[type="password"] {
 input[type="submit"] {
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
   /* margin-top: 10px; */
   cursor: pointer;
   /* font-size: 15px; */
@@ -320,11 +290,11 @@ input[type="submit"]:hover {
 }
 
 .login-svg__text {
-  fill: #FF9800;
+  fill: #ff9800;
 }
 
 .login-svg {
-  font-size: 1.65rem; 
+  font-size: 1.65rem;
   width: 400px;
 }
 
@@ -372,76 +342,53 @@ input[type="submit"]:hover {
   padding-top: 0.2rem;
 }
 
-
-
 #confession-message {
-	/* By Default, Hidden */
-	visibility: hidden;
-	min-width: 100%;
-	background-color: darkgreen;
-	color: #fff;
-	text-align: center;
-	border-radius: 2px;
-	padding: 16px;
-	/* To always Keep on
-	Top of screen */
-	position: fixed;
+  /* By Default, Hidden */
+  visibility: hidden;
+  min-width: 100%;
+  background-color: darkgreen;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
 
-	/* To be displayed above
+  /* To be displayed above
 	Parent HTML DOM element */
-	/* z-index: 0; */
+  /* z-index: 0; */
 
-	/* Position Bottom Left
+  /* Position Bottom Left
 	Corner of Screen */
-	left: 0;
-	bottom: 70px;
+  left: 0;
+  bottom: 70px;
 }
 
-/* Dynamically Appending this
-Class to #snackbar via JS */
 .show-bar {
-	visibility: visible !important;
-	/* fadeout Time decided in
-	accordance to Total Time */
-	/* In case, Time = 3s,
-	fadeout 0.5s 2.5s */
-	animation: fadein 0.5s, fadeout 0.5s 4.5s;
+  visibility: visible !important;
+  animation: fadein 0.5s, fadeout 0.5s 4.5s;
 }
 
-/* when the Snackbar Appears */
 @keyframes fadein {
-	from {
-		bottom: 0;
-		opacity: 0;
-	}
-	to {
-		bottom: 70px;
-		opacity: 1;
-	}
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 70px;
+    opacity: 1;
+  }
 }
 
-/* when the Snackbar Disappears
-from the Screen */
 @keyframes fadeout {
-	from {
-		bottom: 70px;
-		opacity: 1;
-	}
-	to {
-		bottom: 0;
-		opacity: 0;
-	}
+  from {
+    bottom: 70px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
 }
-
-
-
-
-
-
-
-
-
-
 
 img {
   width: 250px;
@@ -460,9 +407,6 @@ p {
     background-color: var(--dark-bg);
     color: var(--light);
   }
-  .card {
-    background-color: var(--lighter-grey);
-  }
   .navigation {
     background-color: var(--lighter-grey);
   }
@@ -476,10 +420,9 @@ p {
     background-color: var(--light);
     color: var(--dark);
   }
-  .card {
-    background-color: lightslategray;
-  }
-  .navigation, .header, .footer {
+  .navigation,
+  .header,
+  .footer {
     background-color: var(--dark-header);
   }
 }
@@ -494,7 +437,7 @@ p {
     padding-top: 0;
   }
 
-  .main  {
+  .main {
     padding-top: 5rem;
     flex-grow: 1;
     flex-shrink: 0;
@@ -508,7 +451,7 @@ p {
     display: flex;
     align-items: center;
     flex-grow: 1;
-    padding: 0;  
+    padding: 0;
     margin: 0;
   }
 
@@ -518,7 +461,7 @@ p {
     justify-content: space-evenly;
     list-style: none;
     flex-direction: row wrap;
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     align-self: center;
   }
 
@@ -526,25 +469,108 @@ p {
     text-align: left;
     display: flex;
     overflow-wrap: break-word;
-    position: fixed; 
+    position: fixed;
     margin: 0;
     border: 0;
-    padding-left: 1rem; 
+    padding-left: 1rem;
     width: 100%;
-  } 
+  }
 
   .navigation a {
     border: 0;
   }
-  
+
   .navigation a.active {
     color: paleturquoise;
     text-decoration: underline;
     text-decoration-thickness: 0.15rem;
+    background-color: var(--lighter-grey);
   }
 
   .navigation li:last-of-type a {
     border: 0;
+  }
+
+  .confessionForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    /* width: 900px;
+    align-self: center; */
+  }
+
+  .confession-subject {
+    padding: 0.5rem 10rem;
+    display: flex;
+    justify-content: right;
+    flex-direction: row;
+    font-size: 1.25rem;
+    line-height: 1rem;
+  }
+
+  .confession-subject__input {
+    width: 40%;
+    padding: 0.2rem;
+  }
+
+  .confession-subject__label {
+    padding: 0.2rem 2rem;
+  }
+  .confession-detail {
+    padding: 0.5rem 10rem;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.25rem;
+  }
+
+  .confession-detail__input {
+    display: flex;
+    resize: vertical;
+    font-size: 1.1rem;
+    max-width: 100%;
+    height: 15rem;
+  }
+
+  .confession-submit {
+    padding: 1rem 10rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+  }
+
+  .confession-submit__button {
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    font-family: "Ubuntu", sans-serif;
+  }
+
+  .misdemeanour__selector,
+  .confession__selector {
+    display: flex;
+    /* justify-content: center; */
+    font-size: 1.25rem;
+  }
+
+  .misdemeanour__selector {
+    padding-top: 2rem;
+    justify-content: center;
+  }
+
+  .confession__selector {
+    padding: 0.5rem 10rem;
+    display: flex;
+    flex-direction: row; 
+    justify-content: right;
+  }
+
+  .misdemeanour__selector-label,
+  .confession__selector-label {
+    padding: 0.2rem 2rem;
+  }
+
+  .misdemeanour__selector-select {
+    width: 40%;
+    padding: 0.2rem;
   }
 }
 
@@ -558,6 +584,10 @@ p {
   }
 
   .navigation {
+    
     justify-content: center;
+  }
+  .navigation ul {
+    font-size: 1.75rem;
   }
 }
