@@ -1,10 +1,11 @@
 interface ErrorMessageProps {
   errorMessage: string | undefined;
+  errorClassName: string;
 }
-const ErrorMessage : React.FC<ErrorMessageProps> = ({errorMessage}) => {
+const ErrorMessage : React.FC<ErrorMessageProps> = ({errorMessage, errorClassName}) => {
   return (
     <>
-    {errorMessage && <p className="error-message">{errorMessage}</p>}
+    {errorMessage && <p className={errorClassName}>{errorMessage}</p>}
     </>
   )
 }

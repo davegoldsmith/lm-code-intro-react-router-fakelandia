@@ -15,7 +15,9 @@ interface MisdemeanourSelectorProps {
   misdemeanourKind: MisdemeanourKind | undefined | JustTalk;
   labelForNoSelection: string;
   includeJustTalk?: boolean;
-  validate?: (subject: MisdemeanourKind | undefined | JustTalk | string) => string | undefined;
+  validate?: (
+    subject: MisdemeanourKind | undefined | JustTalk | string
+  ) => string | undefined;
   doSubmitValidation?: boolean;
 }
 
@@ -25,7 +27,7 @@ const MisdemeanourSelector: React.FC<MisdemeanourSelectorProps> = ({
   includeJustTalk,
   labelForNoSelection,
   validate,
-  doSubmitValidation
+  doSubmitValidation,
 }) => {
   const [errorMessage, setErrorMessage] = useState<string | undefined>();
   let className = "misdemeanour__selector";
@@ -34,7 +36,7 @@ const MisdemeanourSelector: React.FC<MisdemeanourSelectorProps> = ({
   let submitError = undefined;
   if (includeJustTalk) {
     console.log("doValidate = " + doSubmitValidation);
-console.log("validate = "+validate);
+    console.log("validate = " + validate);
     if (doSubmitValidation === true && validate) {
       console.log("in here");
       submitError = validate(misdemeanourKind);
@@ -44,7 +46,6 @@ console.log("validate = "+validate);
     if (errorMessage || submitError) {
       inputClass += " error-border";
     }
-    
   }
   return (
     <div>
@@ -81,8 +82,10 @@ console.log("validate = "+validate);
           )}
         </select>
       </div>
-      <ErrorMessage errorMessage={errorMessage || submitError} />
-
+      <ErrorMessage
+        errorMessage={errorMessage || submitError}
+        errorClassName="error-confess"
+      />
     </div>
   );
 };

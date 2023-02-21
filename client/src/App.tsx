@@ -7,35 +7,37 @@ import { Misdemeanour } from "./types/misdemeanours.types";
 import { useEffect, useState } from "react";
 import MisdemeanoursProvider from "./components/context/misdemeanoursProvider";
 import { getMisdemeanours } from "./helper/apiCalls";
+import LoginForm from "./components/login/LoginForm";
+import UserProvider from "./components/context/UserProvider";
+import { Citizen } from "./types/general.types";
 
 function App() {
   const [misdemeanours, setMisdemeanours] = useState<Array<Misdemeanour>>([]);
-
-  // const getMisdemeanours = async () => {
-  //   const apiResponse = await fetch(
-  //     "http://localhost:8080/api/misdemeanours/5"
-  //   );
-  //   const json = (await apiResponse.json()) as {misdemeanours: Misdemeanour[]};
-  //   json.misdemeanours.map((mis, index)  => {
-  //     mis.punishImage =`https://picsum.photos/300/200?t=${new Date().getTime()}${index}`;      
-  //   });
-
-  //   setMisdemeanours(json.misdemeanours);
-  // };
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState<Citizen>({citizenID: "", citizenName:"", password:""});
 
   useEffect(() => {
     getMisdemeanours(setMisdemeanours);
   }, []);
 
   return (
+    <UserProvider
+      setUser={setCurrentUser}
+      user={currentUser}      
+    >
     <MisdemeanoursProvider
       misdemeanours={misdemeanours}
       setMisdemeanours={setMisdemeanours}
     >
-      <BrowserRouter>
-        <Router />
-      </BrowserRouter>
+      {isLoggedIn === false ? (
+        <LoginForm setIsLoggedIn={setIsLoggedIn} />
+      ) : (
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
+      )}
     </MisdemeanoursProvider>
+    </UserProvider>
   );
 }
 

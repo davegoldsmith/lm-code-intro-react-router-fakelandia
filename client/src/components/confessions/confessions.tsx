@@ -1,33 +1,35 @@
-import { FormEvent, useState } from "react";
-import { postConfession } from "../../helper/apiCalls";
+import { FormEvent, useContext, useState } from "react";
+import { getPunishmentImage, postConfession } from "../../helper/apiCalls";
 import {
   validateConfession,
   validateConfessionType,
   validateSubject,
 } from "../../helper/validation";
-import { JustTalk, MisdemeanourKind } from "../../types/misdemeanours.types";
+import { JustTalk, Misdemeanour, MisdemeanourKind } from "../../types/misdemeanours.types";
 import MisdemeanourSelector from "../misdemeanours/misdemeanourSelector";
 import SubmitConfession from "./SubmitConfession";
 import ConfessionDetails from "./ConfessionDetail";
 import SubjectInput from "./ConfessionSubject";
+import { UpdateMisdemeanoursContext, MisdemeanoursContext } from "../context/misdemeanoursProvider";
+import { UserContext } from "../context/UserProvider";
+import { Citizen } from "../../types/general.types";
+import { getTodaysDate } from "../../helper/helper";
 
 const Confessions: React.FC = () => {
-
-  // const saveFormData = async () => {
-  //   const response = await fetch('/api/registration', {
-  //     method: 'POST',
-  //     body: JSON.stringify(values)
-  //   });
-  //   if (response.status !== 200) {
-  //     throw new Error(`Request failed: ${response.status}`); 
-  //   }
-  // }
-
-  const handleResponse = (response: Response) => {
+  const currentUser = useContext(UserContext) as Citizen;
+  const handleResponse = (response: Response)  => {
     if (response.status !== 200) {
       throw new Error(`Request failed: ${response.status}`);
     }
-    console.log(response);
+    if (confessionKind === "just-talk") {
+      setDisplayMessage("🗣️ You just want to talk about Stuff. Thanks! 💜");
+    }
+    else if (confessionKind !== undefined) {
+      const newMisdemeanour : Misdemeanour = {citizenId: currentUser.citizenID, misdemeanour: confessionKind, date: getTodaysDate(), punishImage: getPunishmentImage(999)};
+      updateMisdeamours([...misdemeanours, newMisdemeanour]);
+      setDisplayMessage("Thanks for the confession, it has been added to our list of demeanours, punishment will be forthcoming!");
+    }
+    
   }
 
   const handleSubmit = async (e: FormEvent) => {
@@ -36,14 +38,15 @@ const Confessions: React.FC = () => {
     try {
       const confession = {subject: subject, reason: confessionKind, details: confessionDetails};
       if (validateConfession(confession).length == 0) {
-        await postConfession(confession, handleResponse);
+        const response : Response = await postConfession(confession);
+        handleResponse(response);
         setSubject("");
         setConfessionKind(undefined);
         setConfessionDetails("");
         setDoSubmitValidation(false);
       }
     } catch (e) {
-
+      console.log(e);
     }
 
   };
@@ -54,7 +57,9 @@ const Confessions: React.FC = () => {
   const [subject, setSubject] = useState("");
   const [confessionDetails, setConfessionDetails] = useState("");
   const [doSubmitValidation, setDoSubmitValidation] = useState(false);
-
+  const [displayMessage, setDisplayMessage] = useState("");
+  const misdemeanours = useContext(MisdemeanoursContext);
+  const updateMisdeamours = useContext(UpdateMisdemeanoursContext);
   return (
     <div>
       <p>
@@ -93,6 +98,7 @@ const Confessions: React.FC = () => {
           setConfessionDetails={setConfessionDetails}
         />
         <SubmitConfession />
+        {displayMessage && <p>{displayMessage}</p>}
       </form>
     </div>
   );

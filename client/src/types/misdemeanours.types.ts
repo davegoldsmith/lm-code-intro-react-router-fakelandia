@@ -18,7 +18,7 @@ export const JUST_TALK = "just-talk";
 export type JustTalk = typeof JUST_TALK;
 
 export type Misdemeanour = {
-  citizenId: number;
+  citizenId: string;
   misdemeanour: MisdemeanourKind;
   date: string; // we'll stringify this for easy sending via HTTP rather than storing the full Date object
 	punishImage?: string;

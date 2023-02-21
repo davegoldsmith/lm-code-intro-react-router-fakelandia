@@ -11,7 +11,7 @@ const SubjectInput: React.FC<SubjectProps> = ({
   subject,
   setSubject,
   validate,
-  doSubmitValidation
+  doSubmitValidation,
 }) => {
   const [errorMessage, setErrorMessage] = useState<string | undefined>();
   let submitError = undefined;
@@ -42,7 +42,10 @@ const SubjectInput: React.FC<SubjectProps> = ({
           }}
         />
       </div>
-      <ErrorMessage errorMessage={errorMessage || submitError} />
+      <ErrorMessage
+        errorMessage={errorMessage || submitError}
+        errorClassName="error-confess"
+      />
     </div>
   );
 };

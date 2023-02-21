@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import LoginForm from "../login/LoginForm";
 import Confessions from "../confessions/Confessions";
 import Home from "../home/home";
 import MainLayout from "../layouts/mainLayout";
@@ -10,9 +11,9 @@ const Router: React.FC = () => {
     <>
     <Routes>
       <Route path="/" element={<MainLayout/>}>
-        <Route path="/" element={<Home/>} /> 
-        <Route path="/misdemeanours" element={<Misdemeanours/>} /> 
-        <Route path="/confessions" element={<Confessions/>} />  
+        <Route index element={<Home/>} /> 
+        <Route path="misdemeanours" element={<Misdemeanours/>} /> 
+        <Route path="confessions" element={<Confessions/>} />  
         <Route path="*" element={<NotFound/>} /> 
       </Route>
     </Routes>

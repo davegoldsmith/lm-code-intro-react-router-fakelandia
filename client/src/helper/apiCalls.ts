@@ -7,16 +7,13 @@ export const getMisdemeanours = async (
   const apiResponse = await fetch("http://localhost:8080/api/misdemeanours/5");
   const json = (await apiResponse.json()) as { misdemeanours: Misdemeanour[] };
   json.misdemeanours.map((mis, index) => {
-    mis.punishImage = `https://picsum.photos/300/200?t=${new Date().getTime()}${index}`;
+    mis.punishImage = getPunishmentImage(index);
   });
 
   setMisdemeanours(json.misdemeanours);
 };
 
-export const postConfession = async (
-  confession: Confession,
-  handleResponse: (response: Response) => void
-) => {
+export const postConfession = async (confession: Confession) => {
   console.log(JSON.stringify(confession));
   const response = await fetch("http://localhost:8080/api/confess", {
     headers: {
@@ -25,5 +22,8 @@ export const postConfession = async (
     method: "POST",
     body: JSON.stringify(confession),
   });
-  handleResponse(response);
+  return response;
 };
+
+export const getPunishmentImage = (suffix?: string | number) =>
+  `https://picsum.photos/300/200?t=${new Date().getTime()}${suffix}`;

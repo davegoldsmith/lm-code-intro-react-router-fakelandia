@@ -1,4 +1,6 @@
+import { citizens } from "../data/users";
 import { Confession } from "../types/confession.types";
+import { FormError } from "../types/general.types";
 import {
   JustTalk,
   MisdemeanourKind,
@@ -45,3 +47,31 @@ export const validateConfession = (confession: Confession): Array<string> => {
   }
   return errors;
 };
+
+export const validateCitizenID = (username: string | undefined) : string | undefined => {
+  const citizen = citizens.find((user) => user.citizenID === username); 
+  if (citizen === undefined) {
+    return "🚫Invalid Citizen ID";
+  }
+  return undefined;
+}
+
+export const validatePassword = (username: string, password: string | undefined) : string | undefined => {
+  const citizen = citizens.find((user) => user.citizenID === username); 
+  if (citizen?.password !== password) {
+    return "🚫Invalid Password";
+  }
+  return undefined;
+}
+
+export const validateLoginCredentials = (username: string | undefined, password: string | undefined) : Array<FormError> => {
+  const formErrors: Array<FormError> = [];
+  const citizen = citizens.find((user) => user.citizenID === username);
+  if (citizen === undefined) {
+    formErrors.push({ inputName: "citizen-id", message : "🚫Invalid Citizen ID"});
+  } else if (citizen.password !== password) {
+    formErrors.push({ inputName: "password", message : "🚫Invalid Password"});
+  }
+  console.log(formErrors)
+  return formErrors;
+}
