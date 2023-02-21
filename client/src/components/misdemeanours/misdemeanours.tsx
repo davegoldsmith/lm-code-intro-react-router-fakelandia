@@ -29,13 +29,13 @@ const Misdemeanours: React.FC = () => {
       {toShow.length === 0 && <p>No matching misdemeanours found. </p>}
       {toShow.length > 0 &&
       <div className="misdemeanours">
-        <table>
+        <table className="misdemeanours-table">
           <thead>
             <tr>
-              <th>Citizen ID</th>
-              <th>Date</th>
-              <th>Misdemeanour</th>
-              <th>Punishment Idea</th>
+              <th scope="col">Citizen ID</th>
+              <th scope="col">Date</th>
+              <th scope="col">Misdemeanour</th>
+              <th scope="col">Punishment Idea</th>
             </tr>
           </thead>
           <tbody>

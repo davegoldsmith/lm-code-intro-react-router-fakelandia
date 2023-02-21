@@ -34,6 +34,7 @@ body {
   justify-content: flex-start;
   text-align: justify;
   border: 0;
+  padding: 0.5rem;
 }
 
 .header {
@@ -83,8 +84,7 @@ body {
   border-bottom: 1px solid lightslategray;
 }
 
-.navigation a:hover
- {
+.navigation a:hover {
   background-color: #1565c0 !important;
 }
 
@@ -114,35 +114,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 5px;
-}
-
-table {
-  border-collapse: collapse;
-  width: 100%;
-  table-layout: auto;
-  /* align-self: center; */
-}
-
-th,
-td {
-  border-right: 1px solid #ffffff;
-  text-align: center;
-  padding: 0.5rem 3rem;
-  font-size: 1.25rem;
-}
-
-th {
-  color: darkgray;
-  text-align: center;
-}
-
-td {
-  /* background-color: rgb(205, 235, 253); */
-}
-
-table th:last-of-type,
-td:last-of-type {
-  border: none;
 }
 
 .error-confess,
@@ -176,15 +147,14 @@ td:last-of-type {
 .confession-subject {
   /* padding: 0.5rem 10rem; */
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   font-size: 1rem;
   line-height: 1rem;
 }
 
 .confession-subject__input,
-.confession-subject__label
- {
-  padding: 0.2rem; 
+.confession-subject__label {
+  padding: 0.2rem;
 }
 
 .confession-subject__label::before,
@@ -196,17 +166,16 @@ td:last-of-type {
 .confession-detail {
   padding: 0.5rem 0rem;
   display: flex;
-  flex-direction: column;   
+  flex-direction: column;
 }
 
-.confession-detail__input { 
+.confession-detail__input {
   display: flex;
   resize: vertical;
   /* font-size: 1.1rem;  */
-  max-width: 100%; 
+  max-width: 100%;
   height: 15rem;
 }
-
 
 .misdemeanour {
   /* display: flex;
@@ -231,8 +200,8 @@ td:last-of-type {
 
 .confession__selector {
   display: flex;
-  justify-content: left ;
-  flex-direction: column; 
+  justify-content: left;
+  flex-direction: column;
   font-size: 1rem;
   line-height: 1rem;
 }
@@ -240,7 +209,12 @@ td:last-of-type {
 .misdemeanour__selector-label,
 .confession__selector-label,
 .misdemeanour__selector-select {
-  padding: 0.2rem; 
+  padding: 0.2rem;
+}
+
+.punish-image {
+  width: 100%;
+  height: auto;
 }
 
 .form-container {
@@ -559,7 +533,7 @@ p {
   .confession__selector {
     padding: 0.5rem 10rem;
     display: flex;
-    flex-direction: row; 
+    flex-direction: row;
     justify-content: right;
   }
 
@@ -571,6 +545,47 @@ p {
   .misdemeanour__selector-select {
     width: 40%;
     padding: 0.2rem;
+  }
+
+  .misdemeanours-table thead {
+    position: unset;
+    left: auto;
+    top: auto;
+  }
+
+  .misdemeanours-table {
+    display: block;
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: auto;
+    /* align-self: center; */
+  }
+  .misdemeanours-table thead {
+  }
+  .misdemeanours-table th,
+  .misdemeanours-table td {
+    border-right: 1px solid #ffffff;
+    text-align: center;
+    padding: 0.5rem 3rem;
+    font-size: 1.25rem;
+  }
+
+  .misdemeanours-table th {
+    color: darkgray;
+    text-align: center;
+  }
+
+  .misdemeanours-table td {
+    /* background-color: rgb(205, 235, 253); */
+  }
+
+  .misdemeanours-table th:last-of-type,
+  .misdemeanours-table td:last-of-type {
+    border: none;
+  }
+
+  .punish-image {
+    max-width: 200px ;
   }
 }
 
@@ -584,10 +599,46 @@ p {
   }
 
   .navigation {
-    
     justify-content: center;
   }
   .navigation ul {
     font-size: 1.75rem;
+  }
+}
+
+@media screen and (max-width: 601px) {
+  .misdemeanours-table {
+    word-wrap: break-word;
+  }
+  .misdemeanours-table thead {
+    position: absolute;
+    left: -999em;
+    top: -999em;
+  }
+  .misdemeanours-table td {
+    display: block;
+    float: left; /* ie9 and under hack */
+    width: 100%;
+    clear: both;
+    padding: 10px 5px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .misdemeanours-table tbody,
+  .misdemeanours-table tr {
+    display: block;
+  }
+  .misdemeanours-table td:before {
+    content: attr(data-th);
+    display: block;
+    font-weight: bold;
+    margin: 0 0 2px;
+    color: lightslategray;
+  }
+  .misdemeanours-table tbody tr {
+    float: left;
+    width: 100%;
+    margin-bottom: 10px;
   }
 }
