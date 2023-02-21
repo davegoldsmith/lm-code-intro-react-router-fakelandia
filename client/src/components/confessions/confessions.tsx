@@ -65,7 +65,7 @@ const Confessions: React.FC = () => {
   return (
     <div>
       <p>
-        It's very difficult to catch people committing misdeneanours so we
+        It's very difficult to catch people committing misdemeanours so we
         appreciate it when citizens confess to us directly.
       </p>
       <p>

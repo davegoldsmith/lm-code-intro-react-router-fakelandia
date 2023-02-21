@@ -26,13 +26,15 @@ const Misdemeanours: React.FC = () => {
         ) => setMisdemeanourKind(setMisdemeanourChoice)}
         labelForNoSelection={"All"}
       />
+      {toShow.length === 0 && <p>No matching misdemeanours found. </p>}
+      {toShow.length > 0 &&
       <div className="misdemeanours">
         <table>
           <thead>
             <tr>
               <th>Citizen ID</th>
               <th>Date</th>
-              <th>Misdeameanour</th>
+              <th>Misdemeanour</th>
               <th>Punishment Idea</th>
             </tr>
           </thead>
@@ -48,16 +50,7 @@ const Misdemeanours: React.FC = () => {
             ))}
           </tbody>
         </table>
-      </div>
-      {/* <div className="misdemeanours">
-      {toShow.map((misdemeanour) => (
-        <MisdemeanorComp
-          citizenId={misdemeanour.citizenId}
-          misdemeanour={misdemeanour.misdemeanour}
-          date={misdemeanour.date}
-        />
-      ))}
-      </div> */}
+      </div>}
     </div>
   );
 };
