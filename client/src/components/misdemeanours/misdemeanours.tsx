@@ -1,11 +1,13 @@
 import { MisdemeanoursContext } from "../context/MisdemeanoursProvider";
 import React, { useContext, useState } from "react";
 import {
+  JustTalk,
   Misdemeanour,
   MisdemeanourKind,
 } from "../../types/misdemeanours.types";
-import MisdemeanorComp from "./Misdemeanour";
+import Misdemeanor from "./Misdemeanour";
 import MisdemeanourSelector from "./MisdemeanourSelector";
+import { MisdemeanourChangeHandler } from "../../types/confession.types";
 
 const Misdemeanours: React.FC = () => {
   const [misdemeanourKind, setMisdemeanourKind] = useState<
@@ -17,13 +19,19 @@ const Misdemeanours: React.FC = () => {
       misdemeanourKind === undefined || mis.misdemeanour === misdemeanourKind
   );
 
+  const onChangeHandler: MisdemeanourChangeHandler = (
+    value: MisdemeanourKind | undefined | JustTalk
+  ) => {
+    if (value != "just-talk") {
+      setMisdemeanourKind(value);
+    }
+  };
+
   return (
     <div>
       <MisdemeanourSelector
         misdemeanourKind={misdemeanourKind}
-        setMisdemeanourKind={(
-          setMisdemeanourChoice: MisdemeanourKind | undefined
-        ) => setMisdemeanourKind(setMisdemeanourChoice)}
+        onChangeHandler = {onChangeHandler}
         labelForNoSelection={"All"}
       />
       {toShow.length === 0 && <p>No matching misdemeanours found. </p>}
@@ -40,7 +48,7 @@ const Misdemeanours: React.FC = () => {
           </thead>
           <tbody>
             {toShow.map((misdemeanour) => (
-              <MisdemeanorComp
+              <Misdemeanor
                 key={misdemeanour.citizenId}
                 citizenId={misdemeanour.citizenId}
                 misdemeanour={misdemeanour.misdemeanour}

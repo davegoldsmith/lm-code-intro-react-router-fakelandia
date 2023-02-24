@@ -1,11 +1,13 @@
+import { ConfessionChangeHandler } from "../../types/confession.types";
+
 interface ConfessionDetailsProps {
   confessionDetails: string;
-  setConfessionDetails: (details: string) => void;
+  onChangeHandler: ConfessionChangeHandler;
 }
 
 const ConfessionDetails: React.FC<ConfessionDetailsProps> = ({
   confessionDetails,
-  setConfessionDetails,
+  onChangeHandler,
 }) => {
   return (
     <div className="confession-detail">
@@ -15,7 +17,7 @@ const ConfessionDetails: React.FC<ConfessionDetailsProps> = ({
         id="confession-detail"
         value={confessionDetails}
         onChange={(e) => {
-          setConfessionDetails(e.target.value);
+          onChangeHandler(e.target.value, "details");
         }}
       ></textarea>
     </div>

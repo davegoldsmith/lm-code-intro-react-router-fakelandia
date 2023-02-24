@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ConfessionChangeHandler, MisdemeanourChangeHandler } from "../../types/confession.types";
 import {
   JustTalk,
   JUST_TALK,
@@ -9,11 +10,9 @@ import {
 import ErrorMessage from "../confessions/errors/ErrorMessage";
 
 interface MisdemeanourSelectorProps {
-  setMisdemeanourKind: (
-    setDeameanourChoice: MisdemeanourKind | undefined
-  ) => void;
   misdemeanourKind: MisdemeanourKind | undefined | JustTalk;
   labelForNoSelection: string;
+  onChangeHandler: ConfessionChangeHandler | MisdemeanourChangeHandler;
   includeJustTalk?: boolean;
   validate?: (
     subject: MisdemeanourKind | undefined | JustTalk | string
@@ -22,8 +21,8 @@ interface MisdemeanourSelectorProps {
 }
 
 const MisdemeanourSelector: React.FC<MisdemeanourSelectorProps> = ({
-  setMisdemeanourKind,
   misdemeanourKind,
+  onChangeHandler,
   includeJustTalk,
   labelForNoSelection,
   validate,
@@ -58,16 +57,16 @@ const MisdemeanourSelector: React.FC<MisdemeanourSelectorProps> = ({
           id="demeanour-type"
           value={misdemeanourKind ? misdemeanourKind : "none"}
           onChange={(e) => {
-            const value = e.target.value;
-            if (value !== "none") {
-              setMisdemeanourKind(value as MisdemeanourKind);
-            } else {
-              setMisdemeanourKind(undefined);
+            let value: MisdemeanourKind | undefined | JustTalk | string = e.target.value;
+            if (value === "none") {
+              value = undefined;
             }
             if (validate) {
               const error = validate(value);
               setErrorMessage(error);
             }
+    
+            onChangeHandler(value as MisdemeanourKind | undefined | JustTalk, "reason");
           }}
         >
           <option value="none">{labelForNoSelection}</option>

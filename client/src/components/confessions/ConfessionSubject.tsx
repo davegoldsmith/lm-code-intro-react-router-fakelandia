@@ -1,15 +1,16 @@
 import { useState } from "react";
+import { ConfessionChangeHandler } from "../../types/confession.types";
 import ErrorMessage from "./errors/ErrorMessage";
 
 interface SubjectProps {
   subject: string;
-  setSubject: (subject: string) => void;
+  onChangeHandler: ConfessionChangeHandler;
   validate: (subject: string) => string | undefined;
   doSubmitValidation: boolean;
 }
 const SubjectInput: React.FC<SubjectProps> = ({
   subject,
-  setSubject,
+  onChangeHandler,
   validate,
   doSubmitValidation,
 }) => {
@@ -38,7 +39,7 @@ const SubjectInput: React.FC<SubjectProps> = ({
           onChange={(e) => {
             const error = validate(e.target.value);
             setErrorMessage(error);
-            setSubject(e.target.value);
+            onChangeHandler(e.target.value, "subject");
           }}
         />
       </div>

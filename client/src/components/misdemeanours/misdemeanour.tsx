@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
 import { Misdemeanour, MisdemeanourKindDisplayMap } from "../../types/misdemeanours.types"
-const MisdemeanorComp : React.FC<Misdemeanour> = (props: Misdemeanour) => {
+const Misdemeanor : React.FC<Misdemeanour> = (props: Misdemeanour) => {
   
   const displayMisdemonour = MisdemeanourKindDisplayMap.get(props.misdemeanour);
 
@@ -14,4 +13,4 @@ const MisdemeanorComp : React.FC<Misdemeanour> = (props: Misdemeanour) => {
   )
 }
 
-export default MisdemeanorComp;
+export default Misdemeanor;

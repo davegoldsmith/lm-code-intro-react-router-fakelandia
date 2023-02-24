@@ -1,4 +1,4 @@
-import { Confession } from "../types/confession.types";
+import { ConfessionData } from "../types/confession.types";
 import { Misdemeanour } from "../types/misdemeanours.types";
 
 export const getMisdemeanours = async (
@@ -13,7 +13,7 @@ export const getMisdemeanours = async (
   setMisdemeanours(json.misdemeanours);
 };
 
-export const postConfession = async (confession: Confession) => {
+export const postConfession = async (confession: ConfessionData) => {
   console.log(JSON.stringify(confession));
   const response = await fetch("http://localhost:8080/api/confess", {
     headers: {

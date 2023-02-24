@@ -5,59 +5,101 @@ import {
   validateConfessionType,
   validateSubject,
 } from "../../helper/validation";
-import { JustTalk, Misdemeanour, MisdemeanourKind } from "../../types/misdemeanours.types";
+import {
+  JustTalk,
+  Misdemeanour,
+  MisdemeanourKind,
+} from "../../types/misdemeanours.types";
 import MisdemeanourSelector from "../misdemeanours/MisdemeanourSelector";
 import SubmitConfession from "./SubmitConfession";
 import ConfessionDetails from "./ConfessionDetail";
 import SubjectInput from "./ConfessionSubject";
-import { UpdateMisdemeanoursContext, MisdemeanoursContext } from "../context/MisdemeanoursProvider";
+import {
+  UpdateMisdemeanoursContext,
+  MisdemeanoursContext,
+} from "../context/MisdemeanoursProvider";
 import { UserContext } from "../context/UserProvider";
 import { Citizen } from "../../types/general.types";
-import { getTodaysDate, showConfessionConfirmationBar } from "../../helper/helper";
+import {
+  getTodaysDate,
+  showConfessionConfirmationBar,
+} from "../../helper/helper";
+import {
+  ConfessionChangeHandler,
+  ConfessionData,
+} from "../../types/confession.types";
+
+const defaultConfessionData: ConfessionData = {
+  subject: "",
+  reason: undefined,
+  details: "",
+};
 
 const Confessions: React.FC = () => {
+  const [confessionData, setConfessionData] = useState<ConfessionData>(
+    defaultConfessionData
+  );
+
+  const resetForm = () => {
+    setConfessionData(defaultConfessionData);
+  };
+
+  const onChangeHandler: ConfessionChangeHandler = <
+    TKey extends keyof ConfessionData
+  >(
+    value: ConfessionData[TKey],
+    name: TKey
+  ) => {
+    const newData = { ...confessionData };
+    newData[name] = value;
+    setConfessionData(newData);
+  };
+
   const currentUser = useContext(UserContext) as Citizen;
-  const handleResponse = (response: Response)  => {
+  const handleResponse = (response: Response) => {
     if (response.status !== 200) {
       throw new Error(`Request failed: ${response.status}`);
     }
-    if (confessionKind === "just-talk") {
+    if (confessionData.reason === "just-talk") {
       setDisplayMessage("🗣️ You just want to talk about Stuff. Thanks! 💜");
-    }
-    else if (confessionKind !== undefined) {
-      const newMisdemeanour : Misdemeanour = {citizenId: currentUser.citizenID, misdemeanour: confessionKind, date: getTodaysDate(), punishImage: getPunishmentImage(999)};
+    } else if (confessionData.reason !== undefined) {
+      const newMisdemeanour: Misdemeanour = {
+        citizenId: currentUser.citizenID,
+        misdemeanour: confessionData.reason,
+        date: getTodaysDate(),
+        punishImage: getPunishmentImage(999),
+      };
       updateMisdeamours([...misdemeanours, newMisdemeanour]);
-      setDisplayMessage("Thanks for the confession, it has been added to our list of demeanours, punishment will be forthcoming!");
-      
+      setDisplayMessage(
+        "Thanks for the confession, it has been added to our list of demeanours, punishment will be forthcoming!"
+      );
     }
     showConfessionConfirmationBar();
-  }
+  };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setDoSubmitValidation(true);
     try {
-      const confession = {subject: subject, reason: confessionKind, details: confessionDetails};
+      const confession = {
+        subject: confessionData.subject,
+        reason: confessionData.reason,
+        details: confessionData.details,
+      };
       if (validateConfession(confession).length == 0) {
-        const response : Response = await postConfession(confession);
+        const response: Response = await postConfession(confession);
         handleResponse(response);
-        setSubject("");
-        setConfessionKind(undefined);
-        setConfessionDetails("");
+        resetForm();
         setDoSubmitValidation(false);
       }
     } catch (e) {
-      setDisplayMessage("❌ Error trying to save your confession. Please try again later.");
+      setDisplayMessage(
+        "❌ Error trying to save your confession. Please try again later."
+      );
       showConfessionConfirmationBar();
     }
-
   };
 
-  const [confessionKind, setConfessionKind] = useState<
-    MisdemeanourKind | undefined | JustTalk
-  >();
-  const [subject, setSubject] = useState("");
-  const [confessionDetails, setConfessionDetails] = useState("");
   const [doSubmitValidation, setDoSubmitValidation] = useState(false);
   const [displayMessage, setDisplayMessage] = useState("");
   const misdemeanours = useContext(MisdemeanoursContext);
@@ -80,24 +122,22 @@ const Confessions: React.FC = () => {
         }}
       >
         <SubjectInput
-          subject={subject}
-          setSubject={setSubject}
+          subject={confessionData.subject}
+          onChangeHandler={onChangeHandler}
           validate={validateSubject}
           doSubmitValidation={doSubmitValidation}
         />
         <MisdemeanourSelector
-          misdemeanourKind={confessionKind}
-          setMisdemeanourKind={(
-            setConfessionChoice: MisdemeanourKind | undefined | JustTalk
-          ) => setConfessionKind(setConfessionChoice)}
+          misdemeanourKind={confessionData.reason}
+          onChangeHandler={onChangeHandler}
           labelForNoSelection={"Select"}
           includeJustTalk={true}
           validate={validateConfessionType}
           doSubmitValidation={doSubmitValidation}
         />
         <ConfessionDetails
-          confessionDetails={confessionDetails}
-          setConfessionDetails={setConfessionDetails}
+          confessionDetails={confessionData.details}
+          onChangeHandler={onChangeHandler}
         />
         <SubmitConfession />
         <div id="confession-message">{displayMessage}</div>
