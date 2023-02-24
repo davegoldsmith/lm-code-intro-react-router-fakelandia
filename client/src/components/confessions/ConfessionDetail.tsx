@@ -1,6 +1,6 @@
 import { ConfessionChangeHandler } from "../../types/confession.types";
 
-interface ConfessionDetailsProps {
+export interface ConfessionDetailsProps {
   confessionDetails: string;
   onChangeHandler: ConfessionChangeHandler;
 }

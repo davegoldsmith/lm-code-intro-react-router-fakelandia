@@ -2,13 +2,14 @@ import { useState } from "react";
 import { ConfessionChangeHandler } from "../../types/confession.types";
 import ErrorMessage from "./errors/ErrorMessage";
 
-interface SubjectProps {
+export interface SubjectInputProps {
   subject: string;
   onChangeHandler: ConfessionChangeHandler;
   validate: (subject: string) => string | undefined;
   doSubmitValidation: boolean;
 }
-const SubjectInput: React.FC<SubjectProps> = ({
+
+const SubjectInput: React.FC<SubjectInputProps> = ({
   subject,
   onChangeHandler,
   validate,
