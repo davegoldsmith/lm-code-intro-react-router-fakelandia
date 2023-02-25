@@ -193,11 +193,7 @@ body {
   font-size: 1rem;
 }
 
-.misdemeanour__selector {
-  /* padding-top: 2rem;
-  justify-content: center; */
-}
-
+.misdemeanour__selector,
 .confession__selector {
   display: flex;
   justify-content: left;
@@ -233,6 +229,7 @@ body {
 input[type="text"],
 input[type="password"] {
   height: 25px;
+  /* width: 50px; */
   /* border: 1px solid green; */
   /* border: 1px solid rgba(0, 0, 0, 0.2); */
 }
@@ -268,12 +265,13 @@ input[type="submit"]:hover {
 }
 
 .login-svg {
-  font-size: 1.65rem;
-  width: 400px;
+  font-size: 1.75rem;
+  /* width: 400px; */
 }
 
 .login-form {
   /* background-color: white; */
+  /* width: 320px; */
   padding: 2rem;
   box-shadow: 0px 5px 10px 0px paleturquoise;
   /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
@@ -316,12 +314,15 @@ input[type="submit"]:hover {
   padding-top: 0.2rem;
 }
 
-#confession-message {
+#confession-message--error,
+#confession-message--just-talk,
+#confession-message--confession
+ {
   /* By Default, Hidden */
   visibility: hidden;
   min-width: 100%;
-  background-color: darkgreen;
-  color: #fff;
+  /* background-color: darkgreen;
+  color: #fff; */
   text-align: center;
   border-radius: 2px;
   padding: 16px;
@@ -337,6 +338,20 @@ input[type="submit"]:hover {
   bottom: 70px;
 }
 
+#confession-message--error {
+  background-color: darkred;
+  color: #fff;
+}
+
+#confession-message--confession {
+  background-color: darkgreen;
+  color: #fff;
+}
+
+#confession-message--just-talk {
+  background-color: darkgoldenrod;
+  color: #fff;
+}
 .show-bar {
   visibility: visible !important;
   animation: fadein 0.5s, fadeout 0.5s 4.5s;
@@ -527,6 +542,8 @@ p {
 
   .misdemeanour__selector {
     padding-top: 2rem;
+    display: flex;
+    flex-direction: row;    
     justify-content: center;
   }
 
