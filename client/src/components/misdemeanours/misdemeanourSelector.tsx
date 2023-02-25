@@ -30,17 +30,15 @@ const MisdemeanourSelector: React.FC<MisdemeanourSelectorProps> = ({
 }) => {
   const [errorMessage, setErrorMessage] = useState<string | undefined>();
   let className = "misdemeanour__selector";
-  let label = "Filter by Misdemeanour:";
+  let label = "Filter by Misdemeanour";
   let inputClass = "misdemeanour__selector-select";
   let submitError = undefined;
   if (includeJustTalk) {
-    console.log("doValidate = " + doSubmitValidation);
-    console.log("validate = " + validate);
     if (doSubmitValidation === true && validate) {
       submitError = validate(misdemeanourKind);
     }
     className = "confession__selector";
-    label = "Reason for Contact:";
+    label = "Reason for Contact";
     if (errorMessage || submitError) {
       inputClass += " error-border";
     }
@@ -49,11 +47,11 @@ const MisdemeanourSelector: React.FC<MisdemeanourSelectorProps> = ({
     <div>
       <div className={className}>
         <label className={className + "-label"} htmlFor="demeanour-type">
-          {label}
+          {label}:
         </label>
         <select
           className={inputClass}
-          aria-label="Filter by Misdemeanour"
+          aria-label={label}
           id="demeanour-type"
           value={misdemeanourKind ? misdemeanourKind : "none"}
           onChange={(e) => {

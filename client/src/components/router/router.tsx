@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import LoginForm from "../login/LoginForm";
-import Confessions from "../confessions/Confessions";
+import Confession from "../confessions/confessions";
 import Home from "../home/Home";
 import MainLayout from "../layouts/MainLayout";
 import Misdemeanours from "../misdemeanours/Misdemeanours";
@@ -13,7 +13,7 @@ const Router: React.FC = () => {
       <Route path="/" element={<MainLayout/>}>
         <Route index element={<Home/>} /> 
         <Route path="misdemeanours" element={<Misdemeanours/>} /> 
-        <Route path="confessions" element={<Confessions/>} />  
+        <Route path="confessions" element={<Confession/>} />  
         <Route path="*" element={<NotFound/>} /> 
       </Route>
     </Routes>

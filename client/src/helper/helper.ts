@@ -7,8 +7,8 @@ export const getTodaysDate = (): string => {
   return dd + "/" + mm + "/" + yyyy;
 };
 
-export const showConfessionConfirmationBar = ()  => {
-  let snackBar = document.getElementById("confession-message");
+export const showConfessionConfirmationBar = (elementId: string)  => {
+  let snackBar = document.getElementById(elementId);
   if (snackBar !== null) {
     snackBar.className = "show-bar";
     setTimeout(function () {
