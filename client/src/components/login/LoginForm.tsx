@@ -1,6 +1,6 @@
 import { FormEvent, useContext, useState } from "react";
 import { citizens } from "../../data/users";
-import { validateCitizenID, validateLoginCredentials, validatePassword } from "../../helper/validation";
+import { validateLoginCredentials } from "../../helper/validation";
 import { Citizen,  FormError } from "../../types/general.types";
 import { UpdateUserContext } from "../context/UserProvider";
 import LoginInput from "./LoginInput";
@@ -27,15 +27,16 @@ const LoginForm: React.FC<loginProps> = ({ setIsLoggedIn }) => {
   };
 
   return (
-    <div className="form-container">
+    <div className="login-form-container">
       <form className="login-form" onSubmit={handleSubmit}>
+      {/* <svg className="login-svg" viewBox="0 0 500 145"> */}
         <svg className="login-svg" viewBox="0 0 500 200">
           <path
             className="login-svg__path"
             id="curve"
             d="M73.2,148.6c4-6.1,65.5-96.8,178.6-95.6c111.3,1.2,170.8,90.3,175.1,97"
           />
-          <text className="login-svg__text" width="800">
+          <text className="login-svg__text" >
             <textPath xlinkHref="#curve">
               Fakelandia Justice Department
             </textPath>

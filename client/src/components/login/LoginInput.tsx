@@ -28,7 +28,7 @@ const LoginInput: React.FC<LoginInputProps> = ({
   if (errorMessage) {
     inputClass += " error-border";
   }
-  console.log(inputClass);
+
   return (
     <div>
       <div className={className}>
