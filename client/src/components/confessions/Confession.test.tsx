@@ -3,7 +3,6 @@ import Confession from "./confessions";
 import userEvent from "@testing-library/user-event";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
-import { measureMemory } from "vm";
 
 const server = setupServer();
 

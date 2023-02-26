@@ -1,7 +1,7 @@
 import { FormEvent, useContext, useState } from "react";
 import { citizens } from "../../data/users";
 import { validateLoginCredentials } from "../../helper/validation";
-import { Citizen,  FormError } from "../../types/general.types";
+import { FormError } from "../../types/general.types";
 import { UpdateUserContext } from "../context/UserProvider";
 import LoginInput from "./LoginInput";
 
@@ -29,7 +29,6 @@ const LoginForm: React.FC<loginProps> = ({ setIsLoggedIn }) => {
   return (
     <div className="login-form-container">
       <form className="login-form" onSubmit={handleSubmit}>
-      {/* <svg className="login-svg" viewBox="0 0 500 145"> */}
         <svg className="login-svg" viewBox="0 0 500 200">
           <path
             className="login-svg__path"

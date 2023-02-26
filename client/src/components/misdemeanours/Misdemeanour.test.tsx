@@ -26,8 +26,6 @@ describe("<Misdemeanor> ", () => {
 
     const punishImage = screen.getByAltText("Punishment idea image");
 
-    screen.debug(punishImage);
-
     expect(punishImage).toBeInTheDocument();
     expect(punishImage).toHaveAttribute(
       "src",
