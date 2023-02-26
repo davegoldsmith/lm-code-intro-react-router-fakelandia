@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Confession from "./confessions";
+import Confession from "./Confession";
 import userEvent from "@testing-library/user-event";
 import { rest } from "msw";
 import { setupServer } from "msw/node";

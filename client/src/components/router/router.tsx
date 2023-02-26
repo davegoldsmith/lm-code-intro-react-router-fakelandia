@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import LoginForm from "../login/LoginForm";
-import Confession from "../confessions/confessions";
+import Confession from "../confessions/Confession";
 import Home from "../home/Home";
 import MainLayout from "../layouts/MainLayout";
 import Misdemeanours from "../misdemeanours/Misdemeanours";
