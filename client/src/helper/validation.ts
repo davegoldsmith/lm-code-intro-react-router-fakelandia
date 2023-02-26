@@ -9,7 +9,6 @@ import {
 export const validateConfessionType = (
   confessionType: MisdemeanourKind | undefined | JustTalk | string
 ): string | undefined => {
-  console.log(confessionType);
   if (typeof confessionType === "undefined" || confessionType === "none") {
     return "🚫Reason for Contact must be Provided";
   } else {
@@ -56,6 +55,5 @@ export const validateLoginCredentials = (username: string | undefined, password:
   } else if (citizen.password !== password) {
     formErrors.push({ inputName: "password", message : "🚫Invalid Password"});
   }
-  console.log(formErrors)
   return formErrors;
 }

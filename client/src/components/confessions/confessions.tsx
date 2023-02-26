@@ -5,9 +5,7 @@ import {
   validateConfessionType,
   validateSubject,
 } from "../../helper/validation";
-import {
-  Misdemeanour,
-} from "../../types/misdemeanours.types";
+import { Misdemeanour } from "../../types/misdemeanours.types";
 import MisdemeanourSelector from "../misdemeanours/MisdemeanourSelector";
 import SubmitConfession from "./SubmitConfession";
 import ConfessionDetails from "./ConfessionDetail";
@@ -25,6 +23,7 @@ import {
   TALK,
 } from "../../types/general.types";
 import {
+  getDisplayMessage,
   getTodaysDate,
   showConfessionConfirmationBar,
 } from "../../helper/helper";
@@ -39,13 +38,17 @@ const defaultConfessionData: ConfessionData = {
   details: "",
 };
 
-const Confession: React.FC = () => { 
+const Confession: React.FC = () => {
   const [confessionData, setConfessionData] = useState<ConfessionData>(
     defaultConfessionData
   );
   const [doSubmitValidation, setDoSubmitValidation] = useState(false);
   const [displayMessage, setDisplayMessage] =
-    useState<ConfessionDisplayMessage>({message: "initial", messageType: ERROR, messageClass: "confession-message--" + ERROR});
+    useState<ConfessionDisplayMessage>({
+      message: "initial",
+      messageType: ERROR,
+      messageClass: "confession-message--" + ERROR,
+    });
   const misdemeanours = useContext(MisdemeanoursContext);
   const updateMisdeamours = useContext(UpdateMisdemeanoursContext);
 
@@ -66,19 +69,16 @@ const Confession: React.FC = () => {
 
   const currentUser = useContext(UserContext) as Citizen;
   const handleResponse = async (response: Response) => {
-    console.log(response, "handleResponse");
     if (response.status !== 200) {
       throw new Error(`Request failed: ${response.status}`);
     }
-    console.log(confessionData.reason);
     if (confessionData.reason === "just-talk") {
-      const res = await response.json();
-      console.log(res);
-      setDisplayMessage({
-        message: `🗣️ You just want to talk about ${confessionData.subject}. Thanks! 💜`,
-        messageType: TALK,
-        messageClass: "confession-message--" + TALK,
-      });
+      setDisplayMessage(
+        getDisplayMessage(
+          `🗣️ You just want to talk about ${confessionData.subject}. Thanks! 💜`,
+          TALK
+        )
+      );
     } else if (confessionData.reason !== undefined) {
       const newMisdemeanour: Misdemeanour = {
         citizenId: currentUser.citizenID,
@@ -87,17 +87,15 @@ const Confession: React.FC = () => {
         punishImage: getPunishmentImage(999),
       };
       updateMisdeamours([...misdemeanours, newMisdemeanour]);
-      setDisplayMessage({
-        message:
+      setDisplayMessage(
+        getDisplayMessage(
           "Thanks for the confession, it has been added to our list of demeanours, punishment will be forthcoming!",
-        messageType: CONFESS,
-        messageClass: "confession-message--" + CONFESS,
-      });
+          CONFESS
+        )
+      );
     }
-    
-    if (displayMessage !== undefined) {
-      showConfessionConfirmationBar(displayMessage.messageClass);
-    }
+
+    showConfessionConfirmationBar(displayMessage.messageClass);
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -116,17 +114,13 @@ const Confession: React.FC = () => {
         setDoSubmitValidation(false);
       }
     } catch (e) {
-      setDisplayMessage({
-        message:
+      setDisplayMessage(
+        getDisplayMessage(
           "❌ Error trying to save your confession. Please try again later.",
-        messageType: ERROR,
-        messageClass: "confession-message--" + ERROR,
-      });
-      if (displayMessage !== undefined) {
+          ERROR)
+      );
       showConfessionConfirmationBar(displayMessage.messageClass);
-      }
     }
-    console.log(displayMessage, "handleResponse");
   };
 
   return (

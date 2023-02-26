@@ -1,3 +1,8 @@
+import {
+  ConfessionDisplayMessage,
+  ConfessionMessageType,
+} from "../types/general.types";
+
 export const getTodaysDate = (): string => {
   const today = new Date();
   const dd = String(today.getDate()).padStart(2, "0");
@@ -7,7 +12,18 @@ export const getTodaysDate = (): string => {
   return dd + "/" + mm + "/" + yyyy;
 };
 
-export const showConfessionConfirmationBar = (elementId: string)  => {
+export const getDisplayMessage = (
+  message: string,
+  messageType: ConfessionMessageType
+): ConfessionDisplayMessage => {
+  return {
+    message: message,
+    messageType: messageType,
+    messageClass: `confession-message--${messageType}`,
+  };
+};
+
+export const showConfessionConfirmationBar = (elementId: string) => {
   let snackBar = document.getElementById(elementId);
   if (snackBar !== null) {
     snackBar.className = "show-bar";
@@ -17,4 +33,4 @@ export const showConfessionConfirmationBar = (elementId: string)  => {
       }
     }, 5000);
   }
-}
+};

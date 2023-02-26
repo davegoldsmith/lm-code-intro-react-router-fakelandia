@@ -9,12 +9,10 @@ export const getMisdemeanours = async (
   json.misdemeanours.map((mis, index) => {
     mis.punishImage = getPunishmentImage(index);
   });
-
   setMisdemeanours(json.misdemeanours);
 };
 
 export const postConfession = async (confession: ConfessionData) => {
-  console.log(JSON.stringify(confession));
   const response = await fetch("http://localhost:8080/api/confess", {
     headers: {
       "Content-Type": "application/json",
