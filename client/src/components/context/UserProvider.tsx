@@ -7,7 +7,7 @@ interface UserProviderProps {
   setUser: (user: Citizen) => void;
 }
 
-export const UserContext = React.createContext({});
+export const UserContext = React.createContext({} as Citizen);
 export const UpdateUserContext = React.createContext(
   (user: Citizen) => {}
 );
