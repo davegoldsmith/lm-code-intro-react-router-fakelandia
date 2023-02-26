@@ -1,25 +1,22 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 import { Citizen } from "../../types/general.types";
 
 interface UserProviderProps {
   children: ReactElement;
-  user: Citizen;
-  setUser: (user: Citizen) => void;
 }
 
 export const UserContext = React.createContext({} as Citizen);
-export const UpdateUserContext = React.createContext(
-  (user: Citizen) => {}
-);
+export const UpdateUserContext = React.createContext((user: Citizen) => {});
 
-const UserProvider: React.FC<UserProviderProps> = ({
-  children,
-  setUser,
-  user,
-}) => {
+const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
+  const [currentUser, setCurrentUser] = useState<Citizen>({
+    citizenID: "",
+    citizenName: "",
+    password: "",
+  });
   return (
-    <UserContext.Provider value={user}>
-      <UpdateUserContext.Provider value={setUser}>
+    <UserContext.Provider value={currentUser}>
+      <UpdateUserContext.Provider value={setCurrentUser}>
         {children}
       </UpdateUserContext.Provider>
     </UserContext.Provider>
