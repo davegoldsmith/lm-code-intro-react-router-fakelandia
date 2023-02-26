@@ -134,7 +134,7 @@ const Confession: React.FC = () => {
         welcome to contact us here too. Up to you!
       </p>
       <form
-        className="confessionForm"
+        className="confession-form"
         data-testid="confession-form"
         onSubmit={(e: FormEvent) => {
           handleSubmit(e);
