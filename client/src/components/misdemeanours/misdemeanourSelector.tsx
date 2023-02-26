@@ -9,7 +9,7 @@ import {
 } from "../../types/misdemeanours.types";
 import ErrorMessage from "../confessions/errors/ErrorMessage";
 
-interface MisdemeanourSelectorProps {
+export interface MisdemeanourSelectorProps {
   misdemeanourKind: MisdemeanourKind | undefined | JustTalk;
   labelForNoSelection: string;
   onChangeHandler: ConfessionChangeHandler | MisdemeanourChangeHandler;
@@ -29,15 +29,16 @@ const MisdemeanourSelector: React.FC<MisdemeanourSelectorProps> = ({
   doSubmitValidation,
 }) => {
   const [errorMessage, setErrorMessage] = useState<string | undefined>();
-  let className = "misdemeanour__selector";
+  let className = "misdemeanour-selector";
   let label = "Filter by Misdemeanour";
-  let inputClass = "misdemeanour__selector-select";
+  let inputClass = "misdemeanour-selector__select";
   let submitError = undefined;
   if (includeJustTalk) {
     if (doSubmitValidation === true && validate) {
       submitError = validate(misdemeanourKind);
     }
-    className = "confession__selector";
+    className = "confession-selector";
+    inputClass = className + "__select";
     label = "Reason for Contact";
     if (errorMessage || submitError) {
       inputClass += " error-border";
@@ -46,7 +47,7 @@ const MisdemeanourSelector: React.FC<MisdemeanourSelectorProps> = ({
   return (
     <div>
       <div className={className}>
-        <label className={className + "-label"} htmlFor="demeanour-type">
+        <label className={className + "__label"} htmlFor="demeanour-type">
           {label}:
         </label>
         <select

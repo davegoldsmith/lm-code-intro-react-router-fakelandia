@@ -158,7 +158,7 @@
 }
 
 .confession-subject__label::before,
-.confession__selector-label::before {
+.confession-selector__label::before {
   content: "* ";
   color: red;
 }
@@ -183,14 +183,14 @@
 .misdemeanour__cell {
 }
 
-.misdemeanour__selector,
-.confession__selector {
+.misdemeanour-selector,
+.confession-selector {
   display: flex;
   font-size: 1rem;
 }
 
-.misdemeanour__selector,
-.confession__selector {
+.misdemeanour-selector,
+.confession-selector {
   display: flex;
   justify-content: left;
   flex-direction: column;
@@ -198,9 +198,9 @@
   line-height: 1rem;
 }
 
-.misdemeanour__selector-label,
-.confession__selector-label,
-.misdemeanour__selector-select {
+.misdemeanour-selector__label,
+.confession-selector__label,
+.misdemeanour-selector__select{
   padding: 0.2rem;
 }
 
@@ -501,32 +501,32 @@ p {
     font-family: "Ubuntu", sans-serif;
   }
 
-  .misdemeanour__selector,
-  .confession__selector {
+  .misdemeanour-selector,
+  .confession-selector {
     display: flex;
     font-size: 1.25rem;
   }
 
-  .misdemeanour__selector {
+  .misdemeanour-selector {
     padding-top: 2rem;
     display: flex;
     flex-direction: row;
     justify-content: center;
   }
 
-  .confession__selector {
+  .confession-selector {
     padding: 0.5rem 10rem;
     display: flex;
     flex-direction: row;
     justify-content: right;
   }
 
-  .misdemeanour__selector-label,
-  .confession__selector-label {
+  .misdemeanour-selector__label,
+  .confession-selector__label {
     padding: 0.2rem 2rem;
   }
 
-  .misdemeanour__selector-select {
+  .confession-selector__select {
     width: 40%;
     padding: 0.2rem;
   }
