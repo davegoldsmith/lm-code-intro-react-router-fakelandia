@@ -4,7 +4,17 @@ import userEvent from "@testing-library/user-event";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 
-const server = setupServer();
+const server = setupServer(
+    rest.post("http://localhost:8080/api/confess", (req, res, ctx) => {
+      return res(
+        ctx.json({
+          success: true,
+          justTalked: false,
+          message: "Confession received.",
+        })
+      );
+    })
+);
 
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
@@ -42,7 +52,7 @@ describe("<Confession>", () => {
 
   test(`Given an invalid subject is entered,
         When submit button is pressed,
-        then a validation error are shown`, async () => {
+        then a validation error is shown`, async () => {
     render(<Confession />);
 
     const submitButton = screen.getByLabelText(/submit/i);
@@ -67,7 +77,7 @@ describe("<Confession>", () => {
 
   test(`Given an invalid reason is chosen,
         When submit button is pressed,
-        then a validation error are shown`, async () => {
+        then a validation error is shown`, async () => {
     render(<Confession />);
 
     const submitButton = screen.getByLabelText(/submit/i);
@@ -93,6 +103,7 @@ describe("<Confession>", () => {
   test(`Given all data is valid and a misdemeanour is selected,
         When submit button is pressed,
         then no validation errors are shown`, async () => {
+
     render(<Confession />);
 
     const submitButton = screen.getByLabelText(/submit/i);
@@ -120,17 +131,6 @@ describe("<Confession>", () => {
   test(`Given all data is valid and a misdemeanour is selected,
         When submit button is pressed,
         then confession success message is shown`, async () => {
-    server.use(
-      rest.post("http://localhost:8080/api/confess", (req, res, ctx) => {
-        return res(
-          ctx.json({
-            success: true,
-            justTalked: false,
-            message: "Confession received.",
-          })
-        );
-      })
-    );
 
     render(<Confession />);
 
